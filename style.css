@@ -1,4 +1,15 @@
 span {
-    display: inline;
+	display: inline-block;
+}
 
+h1 {
+	text-align: center;
+}
+
+#flash-card {
+	width: 500px;
+	height: 300px;
+	border: 2px solid;
+	border-radius: 15px;
+	margin: 0px auto;
 }
