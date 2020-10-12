@@ -4,16 +4,27 @@ answers = ['2', '5', '6', '7', '5', '9', '9', '3', '4', '6', '10', '8', '4', '6'
 const card = document.querySelector('#flash-card')
 const correct = document.querySelector('#number-correct')
 const cardNumber = document.querySelector('#card-number')
-const flipButton = document.querySelector('#flip')
-const previous = document.querySelector('#previous')
-const next = document.querySelector('#next')
+const answerButton = document.querySelector('#show-answer')
+const previousButton = document.querySelector('#previous')
+const nextButton = document.querySelector('#next')
+const resetButton = document.querySelector('#reset')
 
+card.innerText = equations[0]
 
+function showAnswer() {
+	numbers = equations[0].split(" ")
 
-// function cardFront() {
-//    for (let i = 0; i <= equations.length; i++) {
-//        card.innerText = equations[i];
-       
-//    }
-    
-// }
+	
+	
+}
+
+answerButton.addEventListener('click', showAnswer) 
+
+card.addEventListener('click', function() {
+	if (card.style.border = '2px solid darkgrey') {
+		card.style.border = '4px solid green';
+	} else {
+		card.style.border = '2px solid darkgreay'
+	}
+		
+})
