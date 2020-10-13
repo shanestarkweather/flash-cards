@@ -158,19 +158,13 @@ card.addEventListener('click', () => {
 });
 
 function addCorrect() {
-	// if (card.className === 'ungraded') {
-	// 	card.className = 'correct';
-	// } else {
-	// 	card.className = 'ungraded';
-	// 	// numberCorrect--;
-	// }
 	if (equationArray[count].correct !== true) {
 		equationArray[count].correct = true;
-		card.style.border = '4px solid green';
+		card.style.border = '10px solid green';
 		numberCorrect++;
 	} else if (equationArray[count].correct === true) {
 		equationArray[count].correct = false;
-		card.style.border = '2px solid darkgrey';
+		card.style.border = '4px solid darkgrey';
 		numberCorrect--;
 	}
 	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
@@ -187,20 +181,20 @@ document.addEventListener('keydown', function (event) {
 		previousCard();
 	} else if (event.keyCode === 38) {
 		addCorrect();
-		// correctScore();
 	} else if (event.keyCode === 40) {
 		showAnswer();
 	}
 });
 
 function nextCard() {
+	equationShowing = true;
 	if (count === equationArray.length - 1) {
 		count = 0;
-	} else if (count <= equationArray.length) {
+	} else {
 		count++;
 	}
 	if (equationArray[count].correct) {
-		card.style.border = '4px solid green';
+		card.style.border = '10px solid green';
 	} else {
 		card.style.border = '2px solid darkgrey';
 	}
@@ -209,13 +203,14 @@ function nextCard() {
 }
 
 function previousCard() {
+	equationShowing = true;
 	if (count !== 0) {
 		count--;
 	} else {
 		count = equationArray.length - 1;
 	}
 	if (equationArray[count].correct) {
-		card.style.border = '4px solid green';
+		card.style.border = '10px solid green';
 	} else {
 		card.style.border = '2px solid darkgrey';
 	}
@@ -232,9 +227,11 @@ let numberCorrect = 0;
 correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
 
 function resetDeck() {
+	for (let i = 0; i < equationArray.length; i++) {
+		equationArray[i].correct = false;
+	}
 	count = 0;
-	numberCorrect = 0;
-	card.innerText = equationArray[0];
+	card.innerText = equationArray[count].equation;
 	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
 	cardNumber.innerText = `${count + 1} of ${equationArray.length} cards`;
 }
