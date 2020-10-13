@@ -8,8 +8,12 @@ const answerButton = document.querySelector('#show-answer')
 const previousButton = document.querySelector('#previous')
 const nextButton = document.querySelector('#next')
 const resetButton = document.querySelector('#reset')
+
+
 let count = 0
+
 card.innerText = equations[0]
+
 
 function showAnswer() {
 	const answer = answers[count]
@@ -24,11 +28,24 @@ card.addEventListener('click', function() {
 	} else {
 		card.style.border = '2px solid darkgreay'
 	}
-		
+	
 })
 
 nextButton.addEventListener('click', nextCard) 
-// document.addEventListener('keydown', keyboardArrows) 
+
+// I used https://www.codegrepper.com/code-examples/delphi/addeventlistener+arrow+keys and https://eloquentjavascript.net/2nd_edition/14_event.html to figure out the keystorke event listeners
+
+document.addEventListener('keydown', function(event) {
+	if (event.keyCode === 39) {
+		nextCard();
+	} else if (event.keyCode === 37) {
+		previousCard();
+	} else if (event.keyCode === 38) {
+		// up arrow
+	} else if (event.keyCode === 40) {
+		showAnswer();
+	}
+})
 
 function nextCard() {
 	if (count === equations.length - 1) {
@@ -39,28 +56,6 @@ function nextCard() {
 	card.innerText = equations[count]
 }
 
-// function keyboardArrows() {
-	
-// }
-
-document.addEventListener('keydown', function (e) {
-	(e.keyCode) {
-		case 37:
-			alert('left');
-			break;
-		case 38:
-			alert('up');
-			break;
-		case 39:
-			alert('right');
-			break;
-		case 40:
-			alert('down');
-			break;
-	}
-});
-
-
 function previousCard() {
 	if (count !== 0) {
 		count--
@@ -69,3 +64,5 @@ function previousCard() {
 }
 
 previousButton.addEventListener('click', previousCard)
+
+cardNumber.innerText = `${count} of ${equations.length} cards`
