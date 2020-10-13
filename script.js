@@ -1,58 +1,3 @@
-// const equations = [
-// 	'1 + 1',
-// 	'3 + 2',
-// 	'4 + 2',
-// 	'1 + 6',
-// 	'3 + 2',
-// 	'5 + 4',
-// 	'8 + 1',
-// 	'1 + 2',
-// 	'3 + 1',
-// 	'1 + 5',
-// 	'4 + 6',
-// 	'7 + 1',
-// 	'1 + 3',
-// 	'2 + 4',
-// 	'2 + 6',
-// 	'5 + 2',
-// 	'1 + 0',
-// 	'4 + 4',
-// 	'3 + 5',
-// 	'0 + 9',
-// 	'8 + 2',
-// 	'2 + 2',
-// 	'3 + 4',
-// 	'5 + 5',
-// 	'4 + 1',
-// ];
-// const answers = [
-// 	'2',
-// 	'5',
-// 	'6',
-// 	'7',
-// 	'5',
-// 	'9',
-// 	'9',
-// 	'3',
-// 	'4',
-// 	'6',
-// 	'10',
-// 	'8',
-// 	'4',
-// 	'6',
-// 	'8',
-// 	'7',
-// 	'1',
-// 	'8',
-// 	'8',
-// 	'9',
-// 	'10',
-// 	'4',
-// 	'7',
-// 	'10',
-// 	'5',
-// ];
-
 const equationArray = [
 	{
 		equation: '1 + 1',
@@ -209,23 +154,31 @@ answerButton.addEventListener('click', showAnswer);
 
 card.addEventListener('click', () => {
 	addCorrect();
-	correctScore();
+	// correctScore();
 });
 
 function addCorrect() {
-	if (card.className === 'ungraded') {
+	// if (card.className === 'ungraded') {
+	// 	card.className = 'correct';
+	// } else {
+	// 	card.className = 'ungraded';
+	// 	// numberCorrect--;
+	// }
+	if (equationArray[count].correct !== true) {
 		card.className = 'correct';
-	} else {
+		numberCorrect++;
+	} else if (equationArray[count].correct === true) {
 		card.className = 'ungraded';
-		// numberCorrect--;
+		numberCorrect--;
 	}
+	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
 }
 
-function correctScore() {
-	numberCorrect++;
-	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
-	nextCard();
-}
+// function correctScore() {
+// 	numberCorrect++;
+// 	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
+// 	nextCard();
+// }
 
 nextButton.addEventListener('click', nextCard);
 
@@ -238,7 +191,7 @@ document.addEventListener('keydown', function (event) {
 		previousCard();
 	} else if (event.keyCode === 38) {
 		addCorrect();
-		correctScore();
+		// correctScore();
 	} else if (event.keyCode === 40) {
 		showAnswer();
 	}
@@ -281,6 +234,6 @@ function resetDeck() {
 	numberCorrect = 0;
 	card.innerText = equationArray[0];
 	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
-	cardNumber.innerText = `${count + 1} of ${equation.length} cards`;
+	cardNumber.innerText = `${count + 1} of ${equationArray.length} cards`;
 }
 resetButton.addEventListener('click', resetDeck);
