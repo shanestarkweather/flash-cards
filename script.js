@@ -67,7 +67,6 @@ card.innerText = equations[0];
 let equationShowing = true;
 
 function showAnswer() {
-	//how do I make this an if statement
 	if (equationShowing) {
 		equationShowing = false;
 		const answer = answers[count];
@@ -80,16 +79,24 @@ function showAnswer() {
 
 answerButton.addEventListener('click', showAnswer);
 
-card.addEventListener('click', addCorrect);
+card.addEventListener('click', () => {
+	addCorrect();
+	correctScore();
+});
 
 function addCorrect() {
-	if ((card.style.border = '2px solid darkgrey')) {
-		card.style.border = '4px solid green';
+	if (card.className === 'ungraded') {
+		card.className = 'correct';
 	} else {
-		card.style.border = '2px solid darkgrey';
+		card.className = 'ungraded';
+		// numberCorrect--;
 	}
+}
+
+function correctScore() {
 	numberCorrect++;
 	correct.innerText = `${numberCorrect} of ${equations.length} cards`;
+	nextCard();
 }
 
 nextButton.addEventListener('click', nextCard);
@@ -103,19 +110,22 @@ document.addEventListener('keydown', function (event) {
 		previousCard();
 	} else if (event.keyCode === 38) {
 		addCorrect();
+		correctScore();
 	} else if (event.keyCode === 40) {
 		showAnswer();
 	}
 });
 
 function nextCard() {
+	// How do I stop this at 25?
+	card.className = 'ungraded'
 	if (count === equations.length - 1) {
 		count = 0;
-	} else {
+	} else if (count <= equations.length) {
 		count++;
 	}
 	card.innerText = equations[count];
-	cardNumber.innerText = `${count} of ${equations.length} cards`;
+	cardNumber.innerText = `${count + 1} of ${equations.length} cards`;
 }
 
 function previousCard() {
@@ -123,18 +133,22 @@ function previousCard() {
 		count--;
 	}
 	card.innerText = equations[count];
-	cardNumber.innerText = `${count} of ${equations.length} cards`;
+	cardNumber.innerText = `${count + 1} of ${equations.length} cards`;
 }
 
 previousButton.addEventListener('click', previousCard);
 
-cardNumber.innerText = `${count} of ${equations.length} cards`;
+cardNumber.innerText = `${count + 1} of ${equations.length} cards`;
 
 let numberCorrect = 0;
 
 correct.innerText = `${numberCorrect} of ${equations.length} cards`;
 
 function resetDeck() {
-	let count = 0;
+	count = 0;
+	numberCorrect = 0;
+	card.innerText = equations[0];
+	correct.innerText = `${numberCorrect} of ${equations.length} cards`;
+	cardNumber.innerText = `${count + 1} of ${equations.length} cards`;
 }
 resetButton.addEventListener('click', resetDeck);
