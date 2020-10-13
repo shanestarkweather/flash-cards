@@ -165,20 +165,16 @@ function addCorrect() {
 	// 	// numberCorrect--;
 	// }
 	if (equationArray[count].correct !== true) {
-		card.className = 'correct';
+		equationArray[count].correct = true;
+		card.style.border = '4px solid green';
 		numberCorrect++;
 	} else if (equationArray[count].correct === true) {
-		card.className = 'ungraded';
+		equationArray[count].correct = false;
+		card.style.border = '2px solid darkgrey';
 		numberCorrect--;
 	}
 	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
 }
-
-// function correctScore() {
-// 	numberCorrect++;
-// 	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
-// 	nextCard();
-// }
 
 nextButton.addEventListener('click', nextCard);
 
@@ -198,16 +194,15 @@ document.addEventListener('keydown', function (event) {
 });
 
 function nextCard() {
-	// How do I stop this at 25?
-	card.className = 'ungraded';
-	// if (count <= equations.length-1) {
-
-	// }
-
 	if (count === equationArray.length - 1) {
 		count = 0;
 	} else if (count <= equationArray.length) {
 		count++;
+	}
+	if (equationArray[count].correct) {
+		card.style.border = '4px solid green';
+	} else {
+		card.style.border = '2px solid darkgrey';
 	}
 	card.innerText = equationArray[count].equation;
 	cardNumber.innerText = `${count + 1} of ${equationArray.length} cards`;
@@ -216,6 +211,13 @@ function nextCard() {
 function previousCard() {
 	if (count !== 0) {
 		count--;
+	} else {
+		count = equationArray.length - 1;
+	}
+	if (equationArray[count].correct) {
+		card.style.border = '4px solid green';
+	} else {
+		card.style.border = '2px solid darkgrey';
 	}
 	card.innerText = equationArray[count].equation;
 	cardNumber.innerText = `${count + 1} of ${equationArray.length} cards`;
