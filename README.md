@@ -26,6 +26,3 @@ As a user, I want to be able to reset the score and card pile to begin again.
 
 Major hurdles:
 I started this project with an equations array and an answers array. That setup made things very difficult to accomplish the scoring and changing the card borders to green as a visual representation of correctness. Towards the end of the project an instructor guided me to changing my data setup to a single array of objects that made the all of the required functions much easier to accomplish.
-
-Unsolved problems:
-When using the reset button I am able to get everything back to starting conditions, but the green border stays on for the first card in the deck until navigated away from it and back.

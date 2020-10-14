@@ -124,6 +124,31 @@ const equationArray = [
 		answer: '5',
 		correct: false,
 	},
+	{
+		equation: '3 + 3',
+		answer: '6',
+		correct: false,
+	},
+	{
+		equation: '2 + 7',
+		answer: '9',
+		correct: false,
+	},
+	{
+		equation: '8 + 0',
+		answer: '8',
+		correct: false,
+	},
+	{
+		equation: '0 + 3',
+		answer: '3',
+		correct: false,
+	},
+	{
+		equation: '9 + 1',
+		answer: '10',
+		correct: false,
+	},
 ];
 
 const card = document.querySelector('#flash-card');
@@ -244,6 +269,7 @@ function resetDeck() {
 	for (let i = 0; i < equationArray.length; i++) {
 		equationArray[i].correct = false;
 	}
+	card.style.border = '4px solid darkgrey';
 	count = 0;
 	numberCorrect = 0;
 	card.innerText = equationArray[count].equation;
