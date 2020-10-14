@@ -167,7 +167,7 @@ function addCorrect() {
 		card.style.border = '4px solid darkgrey';
 		numberCorrect--;
 	}
-	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
+	correct.innerText = `${numberCorrect} correct!`;
 }
 
 nextButton.addEventListener('click', nextCard);
@@ -224,15 +224,16 @@ cardNumber.innerText = `${count + 1} of ${equationArray.length} cards`;
 
 let numberCorrect = 0;
 
-correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
+correct.innerText = `${numberCorrect} correct!`;
 
 function resetDeck() {
 	for (let i = 0; i < equationArray.length; i++) {
 		equationArray[i].correct = false;
 	}
 	count = 0;
+	numberCorrect = 0;
 	card.innerText = equationArray[count].equation;
-	correct.innerText = `${numberCorrect} of ${equationArray.length} cards`;
+	correct.innerText = `${numberCorrect} correct!`;
 	cardNumber.innerText = `${count + 1} of ${equationArray.length} cards`;
 }
 resetButton.addEventListener('click', resetDeck);
