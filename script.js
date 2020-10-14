@@ -133,11 +133,25 @@ const answerButton = document.querySelector('#show-answer');
 const previousButton = document.querySelector('#previous');
 const nextButton = document.querySelector('#next');
 const resetButton = document.querySelector('#reset');
+const aboutButton = document.querySelector('#open-popup');
+const aboutPopup = document.querySelector('#about-popup');
+const closePopup = document.querySelector('#close-popup');
 
 let count = 0;
 
 card.innerText = equationArray[0].equation;
 let equationShowing = true;
+
+function openAbout() {
+	aboutPopup.style.display = 'block';
+}
+
+function hidePopup() {
+	aboutPopup.style.display = 'none';
+}
+
+aboutButton.addEventListener('click', openAbout);
+closePopup.addEventListener('click', hidePopup);
 
 function showAnswer() {
 	if (equationShowing) {
